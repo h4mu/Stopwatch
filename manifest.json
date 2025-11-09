@@ -1,5 +1,5 @@
 {
-    "name": "Stopwatch PWA",
+    "name": "Stopwatch",
     "short_name": "Stopwatch",
     "start_url": "index.html",
     "display": "standalone",
