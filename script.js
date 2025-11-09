@@ -13,7 +13,9 @@ const resetBtn = document.getElementById('reset');
 const lapBtn = document.getElementById('lap');
 
 async function startStopwatch() {
-    if (!running) {
+    if (running) {
+        stopStopwatch();
+    } else {
         if ('wakeLock' in navigator) {
             try {
                 wakeLock = await navigator.wakeLock.request('screen');
@@ -28,27 +30,22 @@ async function startStopwatch() {
         resetBtn.style.display = "none";
         lapBtn.style.display = "inline-block";
         animationFrameId = requestAnimationFrame(getShowTime);
-    } else {
-        running = false;
-        cancelAnimationFrame(animationFrameId);
-        startStopBtn.innerHTML = "Start";
-        resetBtn.style.display = "inline-block";
-        releaseWakeLock();
     }
 }
 
-function resetStopwatch() {
+function stopStopwatch() {
     running = false;
     cancelAnimationFrame(animationFrameId);
     startStopBtn.innerHTML = "Start";
+    resetBtn.style.display = "inline-block";
+    releaseWakeLock();
+}
+
+function resetStopwatch() {
+    stopStopwatch();
     display.innerHTML = "00:00:00.000";
     lapBtn.style.display = "none";
-    resetBtn.style.display = "inline-block";
-    document.getElementById('laps').innerHTML = "";
-    laps = [];
-    saveLaps();
     difference = 0;
-    releaseWakeLock();
 }
 
 function getShowTime() {
