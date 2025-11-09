@@ -5,14 +5,23 @@ let difference;
 let animationFrameId;
 let running = false;
 let laps = [];
+let wakeLock = null;
 
 const display = document.querySelector('.display');
 const startStopBtn = document.getElementById('startStop');
 const resetBtn = document.getElementById('reset');
 const lapBtn = document.getElementById('lap');
 
-function startStopwatch() {
+async function startStopwatch() {
     if (!running) {
+        if ('wakeLock' in navigator) {
+            try {
+                wakeLock = await navigator.wakeLock.request('screen');
+                console.log('Screen Wake Lock is active.');
+            } catch (err) {
+                console.error(`${err.name}, ${err.message}`);
+            }
+        }
         startTime = new Date().getTime() - (difference || 0);
         running = true;
         startStopBtn.innerHTML = "Stop";
@@ -24,6 +33,7 @@ function startStopwatch() {
         cancelAnimationFrame(animationFrameId);
         startStopBtn.innerHTML = "Start";
         resetBtn.style.display = "inline-block";
+        releaseWakeLock();
     }
 }
 
@@ -38,6 +48,7 @@ function resetStopwatch() {
     laps = [];
     saveLaps();
     difference = 0;
+    releaseWakeLock();
 }
 
 function getShowTime() {
@@ -110,3 +121,26 @@ function deleteLap(index) {
 lapBtn.style.display = "none";
 
 window.addEventListener('load', loadLaps);
+
+document.addEventListener('visibilitychange', handleVisibilityChange);
+
+async function handleVisibilityChange() {
+    if (wakeLock !== null && document.visibilityState === 'visible') {
+        try {
+            wakeLock = await navigator.wakeLock.request('screen');
+            console.log('Screen Wake Lock reacquired.');
+        } catch (err) {
+            console.error(`${err.name}, ${err.message}`);
+        }
+    }
+}
+
+function releaseWakeLock() {
+    if (wakeLock !== null) {
+        wakeLock.release()
+            .then(() => {
+                wakeLock = null;
+                console.log('Screen Wake Lock released.');
+            });
+    }
+}
