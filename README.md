@@ -25,7 +25,7 @@ A Progressive Web App (PWA) is a web application that uses modern web capabiliti
 ### Desktop
 
 1.  **Chrome & Edge:**
-    -   Navigate to the stopwatch [https://h4mu.github.io/Stopwatch/](URL).
+    -   Navigate to the stopwatch (https://h4mu.github.io/Stopwatch/)[URL].
     -   Click the install icon (usually a computer with a down arrow) in the address bar.
     -   Follow the on-screen prompts to install.
 
@@ -35,11 +35,11 @@ A Progressive Web App (PWA) is a web application that uses modern web capabiliti
 ### Mobile
 
 1.  **Android (Chrome):**
-    -   Navigate to the stopwatch [https://h4mu.github.io/Stopwatch/](URL).
+    -   Navigate to the stopwatch (https://h4mu.github.io/Stopwatch/)[URL].
     -   Tap the three-dot menu icon in the top-right corner.
     -   Select "Install app" or "Add to Home screen."
 
 2.  **iOS (Safari):**
-    -   Navigate to the stopwatch [https://h4mu.github.io/Stopwatch/](URL).
+    -   Navigate to the stopwatch (https://h4mu.github.io/Stopwatch/)[URL]
     -   Tap the "Share" icon (a square with an arrow pointing up).
     -   Scroll down and select "Add to Home Screen."
