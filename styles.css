@@ -21,8 +21,8 @@ body {
 }
 
 .controls button {
-    font-size: 1em;
-    padding: 10px 20px;
+    font-size: 1.2em;
+    padding: 15px 30px;
     margin: 5px;
     border: none;
     border-radius: 5px;
@@ -74,7 +74,7 @@ body {
     }
 
     .controls button {
-        font-size: 0.8em;
-        padding: 8px 16px;
+        font-size: 1em;
+        padding: 12px 24px;
     }
 }
